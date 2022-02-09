@@ -1,0 +1,39 @@
+@value makerGreen,makerWhite,makerLightPink from '../../common/colors.module.css';
+
+.login {
+    width: 30em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: makerWhite;
+}
+
+.section {
+    text-align: center;
+}
+
+.button {
+    border-radius: 3em;
+    background-color: markerWhite;
+    border: 0;
+    padding: 0.6em 3em;
+    width: 60%;
+    margin: 0.2em;
+    border: 0.2rem solid makerGreen;
+    outline: 0;
+    font-size: 1.2em;
+    background-color: makerWhite;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: makerLightPink;
+}
+
+.list {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+}
