@@ -1,11 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './login.module.css';
 
 const Login = ({ authService }) => {
+    const navigate = useNavigate();
+
     const onLogin = (event) => {
-        authService.login(event.currentTarget.textContent).then(console.log);
+        authService.login(event.currentTarget.textContent).then((result) => {
+            // const credential = result.credential;
+            // const token = credential.accessToken;
+            // const user = result.user;
+            navigate('/');
+        });
     };
 
     return (
