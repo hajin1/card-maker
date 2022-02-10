@@ -1,7 +1,7 @@
 import Login from './components/login/login';
 import styles from './app.module.css';
 import { Route } from 'react-router-dom';
-import Home from './components/home/home';
+import Maker from './components/maker/maker';
 import { Routes } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -10,8 +10,8 @@ const App = ({ authService }) => {
     <div className={styles.app}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home authService={authService} />} />
-          <Route path="/login" element={<Login authService={authService} />} />
+          <Route path="/maker" element={<Maker authService={authService} />} />
+          <Route path="/" element={<Login authService={authService} />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,28 +1,28 @@
-import styles from './home.module.css';
+import styles from './maker.module.css';
 
 import React from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({ authService }) => {
+const Maker = ({ authService }) => {
     const navigate = useNavigate();
 
     const onLogout = () => {
         authService.logout().then(() => {
-            navigate('/login');
+            navigate('/');
         });
     };
 
     return (
-        <section className={styles.home}>
+        <section className={styles.maker}>
             <Header onLogout={onLogout} />
             <section className={styles.section}>
-                Home
+                Maker
             </section>
             <Footer />
         </section>
     );
 };
 
-export default Home;
+export default Maker;

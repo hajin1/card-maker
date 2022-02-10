@@ -1,6 +1,6 @@
 @value makerGreen,makerWhite,makerLightPink from '../../common/colors.module.css';
 
-.home {
+.maker {
     width: 100%;
     height: 100vh;
     display: flex;
