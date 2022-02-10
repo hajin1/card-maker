@@ -1,4 +1,5 @@
 @value makerGreen,makerWhite,makerLightPink from '../../common/colors.module.css';
+@value mediaQuery from '../../common/size.module.css';
 
 .maker {
     width: 100%;
@@ -11,5 +12,11 @@
     flex-grow: 1;
     background-color: makerWhite;
     height: 80%;
+    display: flex;
 }
 
+@media screen and (max-width:mediaQuery) {
+    .section {
+        flex-direction: column;
+    }
+}
