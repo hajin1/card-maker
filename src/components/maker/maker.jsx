@@ -1,6 +1,6 @@
 import styles from './maker.module.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import { useNavigate } from 'react-router-dom';
@@ -50,6 +50,7 @@ const sample = [
 
 const Maker = ({ authService }) => {
     const navigate = useNavigate();
+    const [cardList, setCardList] = useState(sample);
 
     const onLogout = () => {
         authService.logout().then(() => {
@@ -57,12 +58,15 @@ const Maker = ({ authService }) => {
         });
     };
 
+    const addCard = (card) => {
+    };
+
     return (
         <section className={styles.maker}>
             <Header onLogout={onLogout} />
             <section className={styles.section}>
-                <Editor cards={sample} />
-                <Preview cards={sample} />
+                <Editor cards={cardList} addCard={addCard} />
+                <Preview cards={cardList} />
             </section>
             <Footer />
         </section>
