@@ -9,7 +9,7 @@ import Preview from '../preview/preview';
 
 export const THEME_TYPE = {
     LIGHT: 'light',
-    DARK: 'dar',
+    DARK: 'dark',
     COLORFUL: 'colorful'
 }
 const sample = [
