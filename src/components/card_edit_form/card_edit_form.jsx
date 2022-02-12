@@ -4,23 +4,35 @@ import ImageFileInput from '../image_file_input/image_file_input';
 import { THEME_TYPE } from '../maker/maker';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ card }) => {
+const CardEditForm = ({ card, updateCard, deleteCard }) => {
     const { name, company, title, email, message, theme, fileName, fileURL } = card;
     const onSubmit = () => {
+        deleteCard(card);
+    };
 
-    }
+    const onChange = (event) => {
+        if (event.currentTarget == null) {
+            return;
+        }
+        event.preventDefault();
+        updateCard({
+            ...card,
+            [event.currentTarget.name]: event.currentTarget.value,
+        });
+    };
+
     return (
         <form className={styles.form}>
-            <input className={styles.input} type="text" name="name" value={name} />
-            <input className={styles.input} type="text" name="company" value={company} />
-            <select className={styles.select} value={theme}>
+            <input onChange={onChange} className={styles.input} type="text" name="name" value={name} />
+            <input onChange={onChange} className={styles.input} type="text" name="company" value={company} />
+            <select onChange={onChange} className={styles.select} value={theme}>
                 <option value={THEME_TYPE.DARK}>{THEME_TYPE.DARK}</option>
                 <option value={THEME_TYPE.LIGHT}>{THEME_TYPE.LIGHT}</option>
                 <option value={THEME_TYPE.COLORFUL}>{THEME_TYPE.COLORFUL}</option>
             </select>
-            <input className={styles.input} type="text" name="title" value={title} />
-            <input className={styles.input} type="text" name="email" value={email} />
-            <textarea className={styles.textarea} name="message" value={message} />
+            <input onChange={onChange} className={styles.input} type="text" name="title" value={title} />
+            <input onChange={onChange} className={styles.input} type="text" name="email" value={email} />
+            <textarea onChange={onChange} className={styles.textarea} name="message" value={message} />
             <div className={styles.fileInput}>
                 <ImageFileInput />
             </div>
