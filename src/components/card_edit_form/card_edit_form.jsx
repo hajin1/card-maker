@@ -13,7 +13,7 @@ const CardEditForm = ({ card }) => {
         <form className={styles.form}>
             <input className={styles.input} type="text" name="name" value={name} />
             <input className={styles.input} type="text" name="company" value={company} />
-            <select className={styles.select}>
+            <select className={styles.select} value={theme}>
                 <option value={THEME_TYPE.DARK}>{THEME_TYPE.DARK}</option>
                 <option value={THEME_TYPE.LIGHT}>{THEME_TYPE.LIGHT}</option>
                 <option value={THEME_TYPE.COLORFUL}>{THEME_TYPE.COLORFUL}</option>
