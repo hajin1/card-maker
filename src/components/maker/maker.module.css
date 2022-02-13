@@ -3,16 +3,17 @@
 
 .maker {
     width: 100%;
-    height: 100vh;
+    max-width: 80rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .section {
-    flex-grow: 1;
+    flex: 1;
     background-color: makerWhite;
-    height: 80%;
     display: flex;
+    min-height: 0;
 }
 
 @media screen and (max-width:mediaQuery) {

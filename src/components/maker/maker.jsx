@@ -1,9 +1,8 @@
 import styles from './maker.module.css';
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
@@ -13,43 +12,12 @@ export const THEME_TYPE = {
     COLORFUL: 'colorful'
 }
 
-const Maker = ({ authService, FileInput }) => {
+const Maker = ({ authService, FileInput, cardRepository }) => {
     const navigate = useNavigate();
-    const [cards, setCards] = useState({
-        '1': {
-            id: 1,
-            name: 'Ellie',
-            company: 'Amazon',
-            theme: THEME_TYPE.DARK,
-            title: 'Software Engineer',
-            email: 'ellie@gmail.com',
-            message: "Don't forget to code your dream",
-            fileName: 'Ellie',
-            fileURL: ''
-        },
-        '2': {
-            id: 2,
-            name: 'Bob',
-            company: 'Meta',
-            theme: THEME_TYPE.LIGHT,
-            title: 'Senior Software Engineer',
-            email: 'bob@gmail.com',
-            message: "I love Coding.",
-            fileName: 'Bob',
-            fileURL: ''
-        },
-        '3': {
-            id: 3,
-            name: 'Rachel',
-            company: 'Instagram',
-            theme: THEME_TYPE.COLORFUL,
-            title: 'Product Manager',
-            email: 'rachel@gmail.com',
-            message: "Design your dream",
-            fileName: 'Rachel',
-            fileURL: ''
-        }
-    });
+    const [cards, setCards] = useState({});
+    const location = useLocation();
+    const locationState = location?.state;
+    const [userId, setUserId] = useState(locationState && locationState.id);
 
     const onLogout = () => {
         authService.logout().then(() => {
@@ -63,6 +31,7 @@ const Maker = ({ authService, FileInput }) => {
             updated[card.id] = card;
             return updated;
         });
+        cardRepository.saveCard(userId, card);
     };
 
     const deleteCard = (card) => {
@@ -71,7 +40,31 @@ const Maker = ({ authService, FileInput }) => {
             delete updated[card.id];
             return updated;
         });
+        cardRepository.removeCard(userId, card);
     };
+
+    useEffect(() => {
+        if (!userId) {
+            return;
+        }
+        const stopSync = cardRepository.syncCards(userId, cards => {
+            console.log('--cards--');
+            console.log(cards);
+            cards ? setCards(cards) : setCards({});
+        });
+        return (() => stopSync());
+    }, [userId]);
+
+    useEffect(() => {
+        authService.onAuthChange(user => {
+            if (user) {
+                setUserId(user.uid);
+                console.log(userId);
+            } else {
+                navigate('/');
+            }
+        })
+    });
 
     return (
         <section className={styles.maker}>
