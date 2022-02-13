@@ -13,7 +13,7 @@ export const THEME_TYPE = {
     COLORFUL: 'colorful'
 }
 
-const Maker = ({ authService }) => {
+const Maker = ({ authService, FileInput }) => {
     const navigate = useNavigate();
     const [cards, setCards] = useState({
         '1': {
@@ -24,7 +24,7 @@ const Maker = ({ authService }) => {
             title: 'Software Engineer',
             email: 'ellie@gmail.com',
             message: "Don't forget to code your dream",
-            fileName: '',
+            fileName: 'Ellie',
             fileURL: ''
         },
         '2': {
@@ -35,7 +35,7 @@ const Maker = ({ authService }) => {
             title: 'Senior Software Engineer',
             email: 'bob@gmail.com',
             message: "I love Coding.",
-            fileName: '',
+            fileName: 'Bob',
             fileURL: ''
         },
         '3': {
@@ -46,7 +46,7 @@ const Maker = ({ authService }) => {
             title: 'Product Manager',
             email: 'rachel@gmail.com',
             message: "Design your dream",
-            fileName: '',
+            fileName: 'Rachel',
             fileURL: ''
         }
     });
@@ -77,7 +77,7 @@ const Maker = ({ authService }) => {
         <section className={styles.maker}>
             <Header onLogout={onLogout} />
             <section className={styles.section}>
-                <Editor cards={cards} addCard={createOrUpdateCard} deleteCard={deleteCard} updateCard={createOrUpdateCard} />
+                <Editor cards={cards} addCard={createOrUpdateCard} deleteCard={deleteCard} updateCard={createOrUpdateCard} FileInput={FileInput} />
                 <Preview cards={cards} />
             </section>
             <Footer />
