@@ -61,7 +61,7 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
                 navigate('/');
             }
         })
-    });
+    }, [authService, userId, navigate]);
 
     return (
         <section className={styles.maker}>
