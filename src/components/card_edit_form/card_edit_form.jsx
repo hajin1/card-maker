@@ -4,7 +4,7 @@ import { THEME_TYPE } from '../maker/maker';
 import styles from './card_edit_form.module.css';
 
 const CardEditForm = ({ card, updateCard, deleteCard, FileInput }) => {
-    const { name, company, title, email, message, theme, fileName, fileURL } = card;
+    const { name, company, title, email, message, theme, fileName } = card;
     const onSubmit = () => {
         deleteCard(card);
     };
