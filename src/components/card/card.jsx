@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { THEME_TYPE } from '../maker/maker';
 import styles from './card.module.css';
 const DEFAULT_IMAGE = '/images/default_logo.png';
@@ -32,4 +32,4 @@ const Card = ({ card }) => {
         </li>
     );
 }
-export default Card;
+export default memo(Card);

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import styles from './image_file_input.module.css';
 
 const ImageFileInput = ({ name, imageUploader, onFileChange }) => {
@@ -30,4 +30,4 @@ const ImageFileInput = ({ name, imageUploader, onFileChange }) => {
     );
 }
 
-export default ImageFileInput;
+export default memo(ImageFileInput);

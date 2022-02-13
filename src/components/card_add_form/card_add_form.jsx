@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import Button from '../button/button';
 import { THEME_TYPE } from '../maker/maker';
 import styles from './card_add_form.module.css';
@@ -58,4 +58,4 @@ const CardAddForm = ({ addCard, FileInput }) => {
     );
 }
 
-export default CardAddForm;
+export default memo(CardAddForm);
