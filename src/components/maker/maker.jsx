@@ -1,5 +1,5 @@
 import styles from './maker.module.css';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -19,11 +19,11 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
     const locationState = location?.state;
     const [userId, setUserId] = useState(locationState && locationState.id);
 
-    const onLogout = () => {
+    const onLogout = useCallback(() => {
         authService.logout().then(() => {
             navigate('/');
         });
-    };
+    }, [authService, navigate]);
 
     const createOrUpdateCard = (card) => {
         setCards(cards => {
@@ -61,7 +61,7 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
                 navigate('/');
             }
         })
-    });
+    }, [authService, userId, navigate]);
 
     return (
         <section className={styles.maker}>
